@@ -18,7 +18,6 @@
 - Kayıt Ara
 - Scooter Ekle özellikleri bulunmaktadır.
 
-
 ### Üye Ol
 Üye olmak için kullanıcıdan isim, soyisim, e-posta, telefon, TC Kimlik Numarası, şifresi ve öğrenci olup olmadığının bilgisi isteniyor.
 ### Şifremi Unuttum
@@ -37,3 +36,6 @@ Admin istediği kullanıcıyı sistemden silebiliyor.
 Admin bilgisini görmek istediği kullanıcının telefon numarasını girerek ad, soyad, telefon, e-posta ve bakiye bilgisini görüntüleyebiliyor.
 ### Scooter Ekle
 Admin sistemdeki scooterların yetersiz kaldığını düşündüğünde sisteme 10 adet daha scooterı, scooterın şarj bilgisini girerek ekleyebiliyor.
+
+
+![](https://github.com/emirkeles/Scooter-Kiralama2/blob/main/Proje%20%C3%96%C4%9Frencileri.png)
