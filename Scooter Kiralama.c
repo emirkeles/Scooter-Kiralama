@@ -840,7 +840,6 @@ void scooter_ekleme(kullanici *Uyeler,scooter *Scooterlar){
 		fscanf(x,"%d %d %d %d\n",&Scooterlar[i].scooterNo,&Scooterlar[i].uzaklik,&Scooterlar[i].sarjDurumu,&Scooterlar[i].kiraDurumu);
 	}
 	fclose(x);
-	printf("****   Scooter Basariyla Eklendi   ****");
 	sleep(2);
 	system("cls");
 	menu_admin(Uyeler,Scooterlar);
@@ -941,7 +940,7 @@ for(k=0;k<=19;k++){
 }
 fclose(d);
 system("cls");
-printf("\nAna Menuye Aktariliyorsunuz...\n");
+printf("Ana Menuye Aktariliyorsunuz...\n");
 sleep(2);
 system("cls");
 
@@ -1153,7 +1152,7 @@ dtarihay=dtarih[2]*10+dtarih[3];
 dtarihyil=dtarih[4]*1000+dtarih[5]*100+dtarih[6]*10+dtarih[7];
 
 if(starihyil-dtarihyil>18){
-	printf("\nYasiniz sisteme kaydolmak icin yeterli.\n");
+	printf("\nBasariyla kayit oldunuz.n");
 	sleep(2);
 }
 else if(starihyil-dtarihyil<18){
@@ -1163,7 +1162,7 @@ else if(starihyil-dtarihyil<18){
 }
 else{
 	if(starihay-dtarihay>0){
-		printf("\nYasiniz sisteme kaydolmak icin yeterli.\n");
+		printf("\nBasariyla kayit oldunuz.\n");
 		sleep(2);
 	}
 	else if(starihay-dtarihay<0){
@@ -1173,7 +1172,7 @@ else{
 	}
 	else{
 		if(starihgun-dtarihgun>=0){
-			printf("\nYasiniz sisteme kaydolmak icin yeterli.\n");	
+			printf("\nBasariyla kayit oldunuz.\n");	
 			sleep(2);
 		}
 		else{
