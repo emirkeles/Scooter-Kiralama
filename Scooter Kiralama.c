@@ -39,31 +39,33 @@ float tarife=0.01;			// 		saniye basina ucreti
 float ogrenciIndirimi=0.003;//     	her saniyede indirim yapilacak ucret
  
  void yas_sorgu();
- void menu(kullanici *Uyeler,scooter *Scooterlar);
- void admin_giris(kullanici *Uyeler,scooter *Scooterlar);
- void menu_admin(kullanici *Uyeler,scooter *Scooterlar);
- void scooter_ekleme(kullanici *Uyeler,scooter *Scooterlar);
- void scooter_kiralama(kullanici *Uyeler,scooter *Scooterlar);
- void bakiye_goruntuleme(kullanici *Uyeler,scooter *Scooterlar);
- void scooter_birakma(kullanici *Uyeler,scooter *Scooterlar);
- void bakiye_yukleme(kullanici *Uyeler,scooter *Scooterlar);
- void kayit_gor(kullanici *Uyeler,scooter *Scooterlar);
+ void menu();
+ void admin_giris();
+ void menu_admin();
+ void cikis();
+ void bakiye_goruntuleme(kullanici *Uyeler);
+ void kayit_gor(kullanici *Uyeler);
  void kayit_sil(kullanici *Uyeler);
  void kayit_ara(kullanici *Uyeler);
- void uye_ol(kullanici *Uyeler,scooter *Scooterlar);
- void uye_giris(kullanici *Uyeler,scooter *Scooterlar);
+ void uye_giris(kullanici *Uyeler);
+ void sifremi_unuttum(kullanici *Uyeler);
+ void scooter_ekleme(scooter *Scooterlar);
  void olustur(scooter *Scooterlar);	// 10 adet scooter rastgele uzakliklarda olusturuluyor.
  void sirala(scooter *Scooterlar);	// Scooterlar, kullanici istegine gore uzaklik veya sarj durumuna gore siralaniyor.
  void yazdir(scooter *Scooterlar);	// Yeni siralanan scooterlar yazdiriliyor.
- void cikis();
+ void scooter_kiralama(kullanici *Uyeler,scooter *Scooterlar);
+ void scooter_birakma(kullanici *Uyeler,scooter *Scooterlar);
+ void bakiye_yukleme(kullanici *Uyeler,scooter *Scooterlar);
+ void uye_ol(kullanici *Uyeler,scooter *Scooterlar);
  void bilgiKayit(kullanici *Uyeler,scooter *Scooterlar);
- void sifremi_unuttum(kullanici *Uyeler);
  
 int main(){
 	if(axa==0){
 	Uyeler=(kullanici*)calloc(20,sizeof(kullanici));	// Bellekte yer dinamik olarak ayriliyor.
 	Scooterlar=(scooter*)calloc(20,sizeof(scooter));
-	axa++;}
+	axa++;
+	olustur(Scooterlar);
+	}
 	time_t s;
     struct tm* current_time;
     s = time(NULL);
@@ -87,8 +89,6 @@ int main(){
 	
 	system("cls");
 	int abc,i;
-	olustur(Scooterlar);
-	
 	int a;
 	here:
 		system("cls");
@@ -106,16 +106,16 @@ printf("\n\n\n===================================\n1.Admin Girisi\n=============
 scanf("%d",&a);
 system("cls");
 switch(a){
-	case 1:  admin_giris(Uyeler,Scooterlar);   break;
+	case 1:  admin_giris();   break;
 	case 2:  uye_ol(Uyeler,Scooterlar); break;
-	case 3:  uye_giris(Uyeler,Scooterlar); break;
+	case 3:  uye_giris(Uyeler); break;
 	case 4:  sifremi_unuttum(Uyeler);break;
 	case 5:  cikis();exit(0); break;
 	default:printf("\aYanlis Kodlama Yaptiniz\n\n"); goto here;
 }
     return 0;
 }
-void menu(kullanici *Uyeler,scooter *Scooterlar){
+void menu(){
 		int b;
 	time_t s;
     struct tm* current_time;
@@ -147,7 +147,7 @@ void menu(kullanici *Uyeler,scooter *Scooterlar){
 	scanf("%d",&b);
 	switch(b){
 		case 1: scooter_kiralama(Uyeler,Scooterlar); break;
-		case 2: bakiye_goruntuleme(Uyeler,Scooterlar); break;
+		case 2: bakiye_goruntuleme(Uyeler); break;
 		case 3: scooter_birakma(Uyeler,Scooterlar); break;
 		case 4: bakiye_yukleme(Uyeler,Scooterlar); break;
 		case 5: bilgiKayit(Uyeler,Scooterlar); main(); break;	// Dosyadaki bilgiler kayit altina aliniyor.
@@ -157,7 +157,7 @@ void menu(kullanici *Uyeler,scooter *Scooterlar){
 		goto rap;
 	}
 }
-void menu_admin(kullanici *Uyeler,scooter *Scooterlar){
+void menu_admin(){
 	int a;
 	time_t s;
     struct tm* current_time;
@@ -188,10 +188,10 @@ void menu_admin(kullanici *Uyeler,scooter *Scooterlar){
 	printf("===================================\n");
 	scanf("%d",&a);
 	switch(a){
-		case 1: kayit_gor(Uyeler,Scooterlar); break;
+		case 1: kayit_gor(Uyeler); break;
 		case 2: kayit_sil(Uyeler); break;
 		case 3: kayit_ara(Uyeler); break;
-		case 4: scooter_ekleme(Uyeler,Scooterlar); break;
+		case 4: scooter_ekleme(Scooterlar); break;
 		case 5: main(); break;
 		default: printf("\aHatali Kod Girisi Yaptiniz\n\nLutfen Tekrar Deneyiniz");
 		sleep(2);
@@ -215,13 +215,13 @@ void scooter_kiralama(kullanici *Uyeler,scooter *Scooterlar){
 		printf("Kiralamak Istediginiz Scooter Suanda Kullanimda!");
 		sleep(2);
 		system("cls");
-		menu(Uyeler,Scooterlar);
+		menu();
 	}
 		if(Uyeler[aktifuye].Scooter.kiraDurumu==1){
 		printf("Zaten Halihazirda Bir Scooter Kiralamissiniz!");
 		sleep(2);
 		system("CLS");
-		menu(Uyeler,Scooterlar);
+		menu();
 	}
 	system("CLS");
 	if(Uyeler[aktifuye].ogrenci==1){
@@ -234,7 +234,7 @@ void scooter_kiralama(kullanici *Uyeler,scooter *Scooterlar){
 			printf("Onaylanmadi!");
 			sleep(2);
 			system("CLS");
-		menu(Uyeler,Scooterlar);
+		menu();
 		}
 		else if(ch=='E'|| ch=='e'){
 		Scooterlar[sorgulanacakScooter].kiraDurumu=1;
@@ -280,7 +280,7 @@ void scooter_kiralama(kullanici *Uyeler,scooter *Scooterlar){
 			printf("Onaylanmadi!");
 			sleep(2);
 			system("CLS");
-		menu(Uyeler,Scooterlar);
+		menu();
 		}
 		else if(ch=='E' || ch=='e'){
 		Scooterlar[sorgulanacakScooter].kiraDurumu=1;
@@ -341,9 +341,9 @@ for(i=0;i<=19;i++){
 	fscanf(t,"%d %d %d %d\n",&Scooterlar[i].scooterNo,&Scooterlar[i].uzaklik,&Scooterlar[i].sarjDurumu,&Scooterlar[i].kiraDurumu);
 }
 fclose(t);
-menu(Uyeler,Scooterlar);
+menu();
  }
-void bakiye_goruntuleme(kullanici *Uyeler,scooter *Scooterlar){
+void bakiye_goruntuleme(kullanici *Uyeler){
      system("CLS");
      char x;
      printf("\n\tBakiye --> [ %.2f TL ]\n\n", Uyeler[aktifuye].bakiye);
@@ -357,7 +357,7 @@ void bakiye_goruntuleme(kullanici *Uyeler,scooter *Scooterlar){
              break;
              case '2':
                  system("CLS");
-                 menu(Uyeler,Scooterlar);
+                 menu();
                  break;
      }
  }
@@ -375,14 +375,13 @@ void scooter_birakma(kullanici *Uyeler,scooter *Scooterlar){
   	printf("\t\t\tSurusu bitirmek icin scooteri kurallara uygun olarak kitledim\n\n\t\t\tOnayliyorsaniz: 1\t\t\tOnaylamiyorsaniz:2\n");
         char x;
         x=getch();
-        if(x=='1')
+        if(x=='1'){
         system("cls");
-        {
 		printf("Fotograf cekmek icin '1'e basiniz");
         x=getch();
         	if(x=='1')
        	 	{
-       	 		system("cls");
+       	 	system("cls");
         	printf("Lutfen Bekleyin...\n");
         	sleep(1);
         	printf("Fotograf isleniyor...\n");
@@ -391,6 +390,11 @@ void scooter_birakma(kullanici *Uyeler,scooter *Scooterlar){
         	sleep(1);
         	system("cls");
 		}
+	}
+	else if(x=='2'){
+		printf("\nScooter Birakilamadi!\nMenuye yonlendiriliyorsunuz...\n");
+		sleep(2);
+		menu();
 	}
     begin=Uyeler[aktifuye].sure;		// TXT dosyasindan scooterin kiralandigi anin bilgisi cekiliyor.
 	end = time(NULL);
@@ -530,7 +534,7 @@ void scooter_birakma(kullanici *Uyeler,scooter *Scooterlar){
      	getch();
         system("CLS"); 
         bilgiKayit(Uyeler,Scooterlar);
-        menu(Uyeler,Scooterlar);
+        menu();
  
 }
 void bakiye_yukleme(kullanici *Uyeler,scooter *Scooterlar){
@@ -554,7 +558,7 @@ void bakiye_yukleme(kullanici *Uyeler,scooter *Scooterlar){
 		printf("Yanlis kod girdiniz. Bakiye yukleme islemi basarisiz!");
 		sleep(2);
 		system("CLS");
-		menu(Uyeler,Scooterlar);
+		menu();
 	}
 	else if(!strcmp(telefonKod,telefonKodSorgu)){
 		Uyeler[aktifuye].bakiye+=tutar;
@@ -636,9 +640,9 @@ void bakiye_yukleme(kullanici *Uyeler,scooter *Scooterlar){
 	}
 	fclose(uyebilgileri);
 	fclose(kredikarti);
-		menu(Uyeler,Scooterlar);
+		menu();
 	}
-void kayit_gor(kullanici *Uyeler,scooter *Scooterlar){
+void kayit_gor(kullanici *Uyeler){
  system("cls");
  FILE *s;
  int x,i;
@@ -651,7 +655,7 @@ void kayit_gor(kullanici *Uyeler,scooter *Scooterlar){
  	printf("Su Anda Sisteme Kayitli Uye Yoktur!!!");
  	sleep(2);
  	system("cls");
- 	menu_admin(Uyeler,Scooterlar);
+ 	menu_admin();
  }
  else{
  	here:
@@ -668,7 +672,7 @@ void kayit_gor(kullanici *Uyeler,scooter *Scooterlar){
 	 y=getch();
 	 if(y=='1'){
 	system("cls");
-	menu_admin(Uyeler,Scooterlar);
+	menu_admin();
 }
 	 else
 	 goto here;
@@ -677,22 +681,20 @@ void kayit_gor(kullanici *Uyeler,scooter *Scooterlar){
 void kayit_sil(kullanici *Uyeler){
      system("cls");
      FILE *dosya;
-     
-     int j;
-	FILE *f,*p,*d,*kredikarti;
+     int j,sayac=0;
+	FILE *f;
 	f=fopen("ensonuye.TXT","r");
 	fscanf(f,"%d",&j);
 	fclose(f);
-	f=fopen("ensonuye.TXT","w");
-	fprintf(f,"%d",(j-1));
-	fclose(f);
-    int i,b;
+    int i,b=21;
  	char tel[15];
  	printf("\nSilinecek kisinin telefon numarasini giriniz : ");
  	scanf("%s",tel);
  	for(i=0;i<=j;i++){
-     if(!(strcmp(Uyeler[i].telefon,tel)))
+     if(!(strcmp(Uyeler[i].telefon,tel))){
      b=i;
+     sayac++;
+	 }
  }
  dosya=fopen("uyebilgileri.txt","w");
  for(i=0;i<=j;i++){
@@ -701,10 +703,20 @@ void kayit_sil(kullanici *Uyeler){
  		Uyeler[i]=Uyeler[i+1];
 	 }	 
 }
+	if(sayac==0){
+		printf("\nAranan telefon numarasina ait kullanici bulunamadi.\n");
+		sleep(2);
+	}
+	else if(sayac!=0){
+	f=fopen("ensonuye.TXT","w");
+	fprintf(f,"%d",(j-1));
+	fclose(f);
+	printf("\nKayit Silindi!\n");
+		sleep(2);
+	}
             system("cls");
-    		sleep(2);
     		bilgiKayit(Uyeler,Scooterlar);
-    		menu_admin(Uyeler,Scooterlar);
+    		menu_admin();
 }
 
 void kayit_ara(kullanici *Uyeler){
@@ -730,14 +742,14 @@ void kayit_ara(kullanici *Uyeler){
     durum=1;
      printf("\nCikmak icin herhangi bir tusa basin\n");
      getch();
-    menu_admin(Uyeler,Scooterlar);
+    menu_admin();
     	}	
 	}
 	if(durum==0){
     		system("cls");
 			printf("\nAradiginiz kullanici bulunamadi.\n\nMenuye yonlendiriliyorsunuz...");
     		sleep(2);
-    		menu_admin(Uyeler,Scooterlar);
+    		menu_admin();
 		}
 }
 void olustur(scooter *Scooterlar){
@@ -812,7 +824,7 @@ void sirala(scooter *Scooterlar){
 	}
 }
 
-void scooter_ekleme(kullanici *Uyeler,scooter *Scooterlar){
+void scooter_ekleme(scooter *Scooterlar){
  	system("cls");
  	int k,i;
  	FILE *f,*p,*x;
@@ -843,9 +855,9 @@ void scooter_ekleme(kullanici *Uyeler,scooter *Scooterlar){
 	printf("****  %d No'lu Scooter Basariyla Eklendi   ****",k+1);
 	sleep(2);
 	system("cls");
-	menu_admin(Uyeler,Scooterlar);
+	menu_admin();
  } 
-void admin_giris(kullanici *Uyeler,scooter *Scooterlar){
+void admin_giris(){
  	int a=0,i=0,c;
 char kullaniciAdi[10],Sifre[10];
 admin_yeniden_deneme:
@@ -868,7 +880,7 @@ if(!strcmp("admin",kullaniciAdi) && !strcmp("1234",Sifre)){
 printf("\n\n---Basariyla Giris Yapildi---");
 sleep(2);
 system("cls");
-menu_admin(Uyeler,Scooterlar);
+menu_admin();
 }
 else{
 	if(a==2){
@@ -970,7 +982,7 @@ void cikis(){
 	printf("     \t\t\t        * * * * * * * * * * * * * * * * * * * * * * * * * * *       \n");
 	
 }
-void uye_giris(kullanici *Uyeler,scooter *Scooterlar){
+void uye_giris(kullanici *Uyeler){
 	int i,sayac=1;
 	printf("===================================\n");
 	printf("E-Posta Giriniz:  ");
@@ -985,7 +997,7 @@ void uye_giris(kullanici *Uyeler,scooter *Scooterlar){
 			printf("Menuye Aktariliyorsunuz...\n");
 			aktifuye=i;
 			sleep(2);
-			menu(Uyeler,Scooterlar);
+			menu();
 			break;
 	}
 			sayac=0;
