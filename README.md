@@ -33,7 +33,7 @@ Admin sisteme kayıt olan kullanıcıların ad, soyad, e-posta, telefon, şifre 
 ### Kayıt Sil
 Admin istediği kullanıcıyı sistemden silebiliyor.
 ### Kayıt Ara
-Admin bilgisini görmek istediği kullanıcının telefon numarasını girerek ad, soyad, telefon, e-posta ve bakiye bilgisini görüntüleyebiliyor.
+Admin, bilgisini görmek istediği kullanıcının telefon numarasını girerek ad, soyad, telefon, e-posta ve bakiye bilgisini görüntüleyebiliyor.
 ### Scooter Ekle
 Admin, sistemdeki scooterların yetersiz kaldığını düşündüğünde sisteme 10 adet daha scooterı, scooterın şarj bilgisini girerek ekleyebiliyor.
 
