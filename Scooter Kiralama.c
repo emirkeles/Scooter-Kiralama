@@ -840,6 +840,7 @@ void scooter_ekleme(kullanici *Uyeler,scooter *Scooterlar){
 		fscanf(x,"%d %d %d %d\n",&Scooterlar[i].scooterNo,&Scooterlar[i].uzaklik,&Scooterlar[i].sarjDurumu,&Scooterlar[i].kiraDurumu);
 	}
 	fclose(x);
+	printf("****  %d No'lu Scooter Basariyla Eklendi   ****",k+1);
 	sleep(2);
 	system("cls");
 	menu_admin(Uyeler,Scooterlar);
