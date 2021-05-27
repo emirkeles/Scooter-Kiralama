@@ -64,7 +64,6 @@ int main(){
 	Uyeler=(kullanici*)calloc(20,sizeof(kullanici));	// Bellekte yer dinamik olarak ayriliyor.
 	Scooterlar=(scooter*)calloc(20,sizeof(scooter));
 	axa++;
-	olustur(Scooterlar);
 	}
 	time_t s;
     struct tm* current_time;
@@ -89,6 +88,8 @@ int main(){
 	
 	system("cls");
 	int abc,i;
+	olustur(Scooterlar);
+	
 	int a;
 	here:
 		system("cls");
